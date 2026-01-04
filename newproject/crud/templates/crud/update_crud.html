@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Update Student</title>
+</head>
+<body>
+
+{% include 'crud/navbar.html' %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-body bg-info text-dark">
+                <h4 class="text-center mb-3">Update Student</h4>
+
+                <form method="post" action="{% url 'update_docrud' student.roll %}">
+                    {% csrf_token %}
+
+                    <input type="number"
+                           class="form-control mb-2"
+                           name="crud_roll"
+                           value="{{ student.roll }}"
+                           readonly>
+
+                    <input type="text"
+                           class="form-control mb-2"
+                           name="crud_name"
+                           value="{{ student.name }}"
+                           required>
+
+                    <input type="email"
+                           class="form-control mb-2"
+                           name="crud_email"
+                           value="{{ student.email }}"
+                           required>
+
+                    <textarea class="form-control mb-2"
+                              name="crud_address"
+                              required>{{ student.address }}</textarea>
+
+                    <input type="text"
+                           class="form-control mb-3"
+                           name="crud_phone"
+                           value="{{ student.phone }}"
+                           required>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Update
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
