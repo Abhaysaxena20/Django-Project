@@ -1,9 +1,25 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Student
+from django.db.models import Q
+
+
 
 def home(request):
-    crud=Student.objects.all()
-    return render(request, 'crud/home.html',{'crud':crud})
+    query = request.GET.get('q')
+
+    if query:
+        crud = Student.objects.filter(
+            Q(name__icontains=query) |
+            Q(email__icontains=query) |
+            Q(roll__icontains=query) |
+            Q(phone__icontains=query)
+        )
+    else:
+        crud = Student.objects.all()
+
+    return render(request, 'crud/home.html', {'crud': crud})
+
+
 def crud_add(request):
     if request.method=='POST':
         roll = request.POST.get('crud_roll')

@@ -1,0 +1,36 @@
+/* Allow page to scroll normally */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: auto;         /* page grows naturally */
+    overflow-y: auto;     /* vertical scroll enabled */
+}
+
+/* Space for fixed navbar (if your navbar is fixed-top) */
+body {
+    padding-top: 70px;   /* adjust according to your navbar height */
+}
+
+/* Page wrapper padding */
+.page-wrapper {
+    padding: 15px;
+}
+
+/* Table wrapper scroll only if table is wide */
+.table-wrapper {
+    overflow-x: auto;     /* horizontal scroll for wide tables */
+    overflow-y: visible;  /* table grows naturally vertically */
+}
+
+/* Optional: sticky table header */
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 2;
+}
+
+/* Optional: make table full width */
+table {
+    width: 100%;
+}
