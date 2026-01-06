@@ -39,18 +39,14 @@ def crud_add(request):
         return redirect("/crud/home/")
     return render(request,"crud/add_crud.html",{})
 
-def crud_delete(request,roll):
-    s=Student.objects.get(pk=roll)
-    s.delete()
-    
-    return redirect('/crud/home')
+def crud_delete(request, roll):
+    student = get_object_or_404(Student, roll=roll)
+    student.delete()
+    return redirect('crud_home')
 
 def crud_update(request, roll):
     student = get_object_or_404(Student, roll=roll)
-    student 
-    return render(request, 'crud/update_crud.html', {
-        'student': student
-    })
+    return render(request, 'crud/update_crud.html', {'student': student})
 
 
 def docrud_update(request, roll):
