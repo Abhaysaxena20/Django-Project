@@ -1,13 +1,12 @@
-from django.urls import path
-from .views import home
-from .views import *
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import StudentViewSet  # make sure you have a ViewSet for Student
 
+# Create a router and register your viewset
+router = DefaultRouter()
+router.register(r'students', StudentViewSet, basename='student')
+
+# Include router URLs
 urlpatterns = [
-    path('', home, name='crud_home'),          # /crud/
-    path('home/', home, name='home'),           # /crud/home/
-    path('add_crud/', crud_add, name='add_crud'),
-    path('delete_crud/<str:roll>/', crud_delete, name='delete_crud'),
-    path('update_crud/<str:roll>/', crud_update, name='update_crud'),
-    path('docrud_update/<str:roll>/', docrud_update, name='update_docrud'),
-
+    path('', include(router.urls)),  # all API URLs go through router
 ]

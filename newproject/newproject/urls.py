@@ -15,13 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.shortcuts import redirect
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lambda request: redirect('crud/home/')),
-    path('crud/',include('crud.urls')),
+    path('crud/', include('crud.urls')),  # your API
+    path('api-auth/', include('rest_framework.urls')),  # <-- DRF login/logout
+    path('', lambda request: redirect('/crud/students/')),  # redirect root
 ]
- 
